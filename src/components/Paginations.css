@@ -1,3 +1,19 @@
 .pagination{
     padding:5vh;
 }
+.page-items{
+    padding:5px 10px;
+    margin: 5px;
+    background-color: burlywood;
+    color:black;
+    list-style-type: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.page-items:hover{
+    background-color: black;
+    color:white;
+}
+.pagination-page{
+    display: flex;
+}
