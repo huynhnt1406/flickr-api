@@ -1,0 +1,59 @@
+.images-child img{
+    height: 400px;
+    width: 100%;
+}
+.images-list{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.app-images{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header{
+    padding:5vh;
+}
+.header input{
+    padding:5px 20vh;
+    text-align: center;
+    border-bottom:2px solid black;
+    border-top:none;
+    border-left:none;
+    border-right: none;
+    transition: 0.3s ease-in-out;
+    outline: none;
+}
+.header input:hover{
+    border-bottom: 2px solid forestgreen;
+    border-top:none;
+    border-left:none;
+    border-right: none;
+}
+.header h3{
+    letter-spacing: 10px;
+    font-weight: 400;
+    color:black;
+}
+.header button{
+    border:none;
+    padding:5px;
+    background-color: black;
+    color:white;
+    transition: 0.3s ease-in-out;
+    margin-left:5px;
+    border-radius: 5px;
+}
+.header button:hover{
+    background-color: forestgreen;
+    color:black;
+}
+::placeholder{
+    letter-spacing: 2px;
+    color:black;
+    transition: 0.3s ease-in-out;
+}
+::placeholder:focus{
+    letter-spacing: 5px;
+}
