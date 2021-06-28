@@ -1,16 +1,17 @@
 
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Search from './Search';
 import Paginations from './Paginations';
 import Tags from './Tags';
 import './Images.css'
+import configUrl from '../config/index'
+import http  from '../helpers/httpInterceptor.js'
 function Images() {
-
   const [pictures,setPictures] = useState([])
-  const [picturesPerPage,setPicturesPerPage] = useState(12)
+  const [item,setItem] = useState('flowers')
+  const [picturesPerPage] = useState(12)
   const [currentPage,setCurrentPage] = useState(1)
-  const [totalPage,setTotalPage] = useState(200)
+  const [totalPage] = useState(100)
   const [tags, setTags] = useState([
     {
         id:1,
@@ -45,42 +46,24 @@ function Images() {
         tags:'Effiel Tower'
     }
 ])
+
   
   useEffect(() => {
     const fetchPictures = async () => {
-      const res = await axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=cb1c3362ce8880b5a7ef7f07d613c1a2&format=json&nojsoncallback=1`,{
+      const res = await http.get(configUrl.baseURL,{
         params:{
-          tags:'flowers',
+          tags:item
         }
       })
       setPictures(res.data.photos.photo)
-      console.log(res.data)
     }
     fetchPictures()
-  }, [])
-  const handleSearch = async (term) => {
-    try {
-        const res = await axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=cb1c3362ce8880b5a7ef7f07d613c1a2&format=json&nojsoncallback=1`,{
-          params:{
-            tags:term,
-          }
-        })
-        setPictures(res.data.photos.photo)
-    } catch (error) {
-        console.log(error)
-    }
+  }, [item])
+  const handleSearch = (term) => {
+    setItem(term)
   }
   const clickTag = async (tags) => {
-    try {
-      const res = await axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=cb1c3362ce8880b5a7ef7f07d613c1a2&format=json&nojsoncallback=1`,{
-          params:{
-            tags:tags
-          }
-        })
-        setPictures(res.data.photos.photo)
-    } catch (error) {
-      console.log(error)
-    }
+    setItem(tags)
   }
 
   const indexOfLastPage = currentPage * picturesPerPage

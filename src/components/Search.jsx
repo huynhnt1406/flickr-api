@@ -12,7 +12,6 @@ function Search({handleSearch}) {
         if(term !== ''){
             console.log(term)
             handleSearch(term)
-            setTerm('')
         }
     }
 
